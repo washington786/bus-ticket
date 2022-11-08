@@ -51,7 +51,7 @@ const MapScreen = () => {
       >
         {DUMMY_DATA.map((place) => {
           return (
-            <>
+            <> 
               <Marker
                 key={place.id.toString()}
                 title={place.place}
