@@ -1,9 +1,9 @@
 import "intl";
 
 import "intl/locale-data/jsonp/en";
-
+import moment from 'moment';
 import * as React from "react";
-import { View,StyleSheet } from "react-native";
+import { View,StyleSheet ,Text} from "react-native";
 import { Button, Caption, Divider } from "react-native-paper";
 
 import { DatePickerModal } from "react-native-paper-dates";
@@ -29,7 +29,10 @@ export default function DatePickerComponent() {
     },
     [setOpen, setRange]
   );
-
+  var a =moment(range.startDate)
+  var b =moment(range.endDate)
+  
+ var diff=0
   return (
     <>
       <Button
@@ -73,14 +76,16 @@ export default function DatePickerComponent() {
         <>
           <View>
             <GlobalTitle title="From" />
-            <Caption style={styles.captions}>{range.startDate?.toLocaleString()}</Caption>
+            <Caption style={styles.captions}>{moment(range.startDate?.toLocaleString()).format('YYYY/MM/DD')}</Caption>
             <Divider/>
           </View>
 
           <View>
             <GlobalTitle title="To" />
-            <Caption style={styles.captions}>{range.endDate?.toLocaleString()}</Caption>
+            <Caption style={styles.captions}>{moment(range.endDate?.toLocaleString()).format('YYYY/MM/DD')}</Caption>
           </View>
+          <Text>{diff=(b.diff(a,'days'))} days</Text>
+          {/* <Text style={{fontSize:25}}>{Price *diff}</Text> */}
         </>
       )}
     </>

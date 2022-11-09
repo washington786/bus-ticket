@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View,Alert } from "react-native";
 import React,{useState} from "react";
 import GlobalInput from "../TextInput/GlobalInput";
 import { GlobalColors } from "../../infrastructure/GlobalColors";
@@ -22,7 +22,7 @@ const AuthResetInputs = () => {
     alignItems: "center",
     justifyContent: "center",
   };
-  const [email,setEmail]=useState();
+  const [email,setEmail]=useState('');
   const reset =async()=>{
       try{
           await auth

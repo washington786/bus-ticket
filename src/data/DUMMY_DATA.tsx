@@ -2,29 +2,47 @@ export const DUMMY_DATA=[
     {
         id:1,
         coords:{
-            latitude: -25.7831,
-            longitude: 28.2752,
+            latitude: -23.9123,
+            longitude: 29.4905,
         },
-        place:'Menlyn Bus stop',
-        description:''
+        place:'Flora Park',
+        description:'',
+        BusStop:{
+            BusStop1: 'McDonald str',
+            BusStop2: 'Boshoff str',
+            BusStop3: 'DeWet str',
+            
+        },
     },
     {
         id:2,
         coords:{
-            latitude: -25.754875,
-            longitude: 28.208801,
+            latitude: -23.9045587,
+            longitude: 29.4309914,
         },
-        place:'Garadiski Bus stop',
-        description:''
+        place:'Nirvhana (Westernburg)',
+        description:'',
+        BusStop:{
+            BusStop1: 'Orient str',
+            BusStop2: 'Lawton str',
+            BusStop3: 'Bombay str',
+            
+        },
     },
     {
         id:3,
         coords:{
-            latitude: -25.7410,
-            longitude: 28.1759,
+            latitude: -23.8631,
+            longitude: 29.40478,
         },
-        place:'Marabastad Bus stop',
-        description:''
+        place:'Seshego zone 1 & madiba Park',
+        description:'',
+         BusStop:{
+            BusStop1: 'hospital View',
+            BusStop2: 'Bo_okelo',
+            BusStop3: 'madiba street',
+            
+        },
     },
     {
         id:4,
@@ -33,7 +51,13 @@ export const DUMMY_DATA=[
             longitude: 29.0139735811,
         },
         place:'Polokwane CBD Bus Stop',
-        description:''
+        description:'',
+        BusStop:{
+            BusStop1: 'Thabo Mbeki',
+            BusStop2: 'Church Street',
+            BusStop3: 'madiba street',
+            
+        },
     },
     {
         id:5,
@@ -41,8 +65,15 @@ export const DUMMY_DATA=[
             latitude: -23.90035,
             longitude: 29.45101,
         },
-        place:'Seshego Bus Stop',
-        description:''
+        place:'Seshego  Zone 2 & Zone 3',
+        description:'',
+        BusStop:{
+            BusStop1: 'Ditlou',
+            BusStop2: 'Oliver Tambo',
+            BusStop3: 'Freedom',
+            BusStop4: 'Nelson Mandela',
+        },
+
     },
     {
         id:6,
@@ -65,11 +96,11 @@ export const DUMMY_DATA=[
     {
         id:8,
         coords:{
-            latitude: -23.9007,
-            longitude: 29.48356,
+            latitude: -23.9248,
+            longitude: 29.4688,
         },
-        place:'Flora Bus stop',
+        place:'Peter Mokaba Stadium',
         description:''
     },
-
+//www.infordesk 
 ]
