@@ -1,5 +1,5 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import ScreenWrapper from "../components/ScreenWrapper/ScreenWrapper";
 import { useNavigation } from "@react-navigation/native";
 import { Avatar, Button, Snackbar } from "react-native-paper";
@@ -7,8 +7,39 @@ import InputWrapper from "../components/InputWrapper/InputWrapper";
 import GlobalInput from "../components/TextInput/GlobalInput";
 import GlobalButton from "../components/GlobalButton/GlobalButton";
 import { GlobalColors } from "../infrastructure/GlobalColors";
-
+import { db,auth } from "../Firebase";
 const SettingScreen = () => {
+  const [name,setName]=useState('')
+  const [email,setEmail]=useState('')
+  const [Email,setemail]=useState('')
+  const [phonenumber,setPhonenumber]=useState('')
+  const [Fullname,setFullname]=useState('')
+  const [Phonenumber,setphonenumber]=useState('')
+  const [uid,setUid]=useState('')
+  const user = auth.currentUser.uid;
+  useEffect(()=>{
+      db.ref(`/Bususers/`+ user).on('value',snap=>{
+        
+        setName(snap.val() && snap.val().name);
+    setEmail(snap.val().email)
+    setPhonenumber(snap.val().phonenumber)
+ 
+  setUid(snap.val().uid)
+      })
+    
+      
+    },[])
+    const editprofile=()=>{
+   
+  db.ref('Bususers').child(user).update({name:Fullname,email:Email,phonenumber:Phonenumber})
+      .then(()=>db.ref('Bususers').once('value'))
+      .then(snapshot=>snapshot.val())
+      .catch(error => ({
+        errorCode: error.code,
+        errorMessage: error.message
+      }));
+      // setIsSnackBarVisible(!isSnackBarVisible);
+    }
   const navigation = useNavigation();
 
   const [isSnackBarVisible, setIsSnackBarVisible] = useState(false);
@@ -36,6 +67,9 @@ const SettingScreen = () => {
           <GlobalInput
             config={{
               placeholder: "Karabo Daniel",
+            
+              onChangeText:(name)=>setFullname(name),
+              value:name,
             }}
             customStyle={styles.input}
             icon="account"
@@ -43,6 +77,7 @@ const SettingScreen = () => {
           <GlobalInput
             config={{
               placeholder: "Mawasha",
+              value:uid,
             }}
             customStyle={styles.input}
             icon="account"
@@ -50,6 +85,8 @@ const SettingScreen = () => {
           <GlobalInput
             config={{
               placeholder: "dkmawasha@gmail.com",
+              onChangeText:(email)=>setemail(email),
+              value:email,
             }}
             customStyle={styles.input}
             icon="email"
@@ -57,6 +94,8 @@ const SettingScreen = () => {
           <GlobalInput
             config={{
               placeholder: "+27817263718",
+              onChangeText:(phonenumber)=>setphonenumber(phonenumber),
+              value:phonenumber,
             }}
             customStyle={styles.input}
             icon="phone"
@@ -66,7 +105,8 @@ const SettingScreen = () => {
             style={styles.button}
             mode="contained"
             color={GlobalColors.primary}
-            onPress={onUpdateProfile}
+            // onPress={onUpdateProfile}
+            onPress={editprofile()}
           >
             UPDATE
           </Button>

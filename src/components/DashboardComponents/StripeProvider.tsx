@@ -2,9 +2,11 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
 import { CardField, useStripe } from '@stripe/stripe-react-native';
+import { useState } from 'react';
 
-const StripeProviderComponent = () => {
+const StripeProviderComponent = ({onChangeMethod}) => {
     const { confirmPayment } = useStripe();
+    
   return (
     <CardField
       postalCodeEnabled={false}
@@ -20,9 +22,7 @@ const StripeProviderComponent = () => {
         height: 50,
         marginVertical: 30,
       }}
-      onCardChange={(cardDetails) => {
-        console.log('cardDetails', cardDetails);
-      }}
+      onCardChange={onChangeMethod}
       onFocus={(focusedField) => {
         console.log('focusField', focusedField);
       }}

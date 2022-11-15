@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react';
 import { SafeAreaView,View,Text, Dimensions,TouchableOpacity,StyleSheet,ScrollView, ToastAndroid,Image} from 'react-native';
 import Icons from 'react-native-vector-icons/MaterialIcons'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-
+import { db,auth } from '../../Firebase';
 import { CreditCardInput} from "react-native-credit-card-input";
 
 const Secret_key = "sk_test_51JFTx2ELhasCFMKIlq1RuTrK60m9VhC64AbCjwxLxUKxRcbgFaasRDR3pFHyp8lcHFA5Zsjb2liadbxEETUEUbjl00SJXPtTDV";
@@ -15,7 +15,7 @@ const height = Dimensions.get('screen').height;
 // components
 const CURRENCY = 'USD';
 var CARD_TOKEN = null;
-
+const user=auth.currentUser?.uid
 // function
 function getCreditCardToken(creditCardData){
     // alert()
@@ -116,7 +116,7 @@ const StripePaymentScreen = ({navigation,route}) => {
             // console.log(key);
             db.ref('/bookings/').child(key).update({
                 payment_status: 'paid',
-                booking_status: 'successful'
+                booking_status: 'successful',user,
             }).then(()=>{
               navigation.navigate('paymentSuccessful');
             }).catch((err)=>{
