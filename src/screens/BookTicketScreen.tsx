@@ -78,7 +78,8 @@ const BookTicketScreen = ({ route }) => {
 
   let toalAmount = price * diff;
   const onToPayment = () => {
-    navigation.navigate('checkout',{totalAmount:price*diff})
+    navigation.navigate('checkout',{totalAmount:price*diff,diff:diff,place1:place1,
+    place2:place2,})
   }
   return (
     <ScreenWrapper>
@@ -131,13 +132,13 @@ const BookTicketScreen = ({ route }) => {
 
               <View style={styles.totCon}>
                 <Text style={[styles.text, styles.tot]}>Total Amount</Text>
-                <Text style={[styles.text, styles.tot]}>R{toalAmount.toFixed(2)}</Text>
+                <Text style={[styles.text, styles.tot]}>R{toalAmount=price*diff}</Text>
               </View>
               <Divider />
-              <View style={styles.totCon}>
+              {/* <View style={styles.totCon}>
                 <Text style={[styles.text, styles.tot]}>Total Amount(VAT)</Text>
                 <Text style={[styles.text, styles.tot]}>R135.89</Text>
-              </View>
+              </View> */}
             </View>
           </View>
         </ContentCard>
