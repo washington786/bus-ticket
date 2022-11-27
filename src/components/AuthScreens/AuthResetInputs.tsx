@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { StyleSheet, Text, View,Alert } from "react-native";
+import React,{useState} from "react";
 import GlobalInput from "../TextInput/GlobalInput";
 import { GlobalColors } from "../../infrastructure/GlobalColors";
 import { useNavigation } from "@react-navigation/native";
@@ -7,7 +7,7 @@ import { Button, Modal, Portal, Provider } from "react-native-paper";
 
 import LottieView from "lottie-react-native";
 import { GlobalFonts } from "../../infrastructure/GlobalFonts";
-
+import { auth } from "../../Firebase";
 const AuthResetInputs = () => {
   const navigation = useNavigation();
 
@@ -22,18 +22,32 @@ const AuthResetInputs = () => {
     alignItems: "center",
     justifyContent: "center",
   };
-
+  const [email,setEmail]=useState('');
+  const reset =async()=>{
+      try{
+          await auth
+          .sendPasswordResetEmail(email)
+          setEmail('')
+          showModal
+      }catch(error){
+          Alert.alert(error.message)
+      }
+  }
   return (
     <>
       <GlobalInput
         config={{
           placeholder: "Email address",
+          keyboardType:'email-address',
+          value:email,
+          onChangeText:(e)=>(setEmail(e)),
         }}
         customStyle={styles.input}
         icon="email"
       />
       <Button
-        onPress={showModal}
+        
+        onPress={()=>reset()} 
         color={GlobalColors.primary}
         mode="contained"
         style={styles.btn}

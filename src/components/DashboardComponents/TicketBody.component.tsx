@@ -6,11 +6,11 @@ import Icon from "react-native-vector-icons/AntDesign";
 import { Paragraph, Text } from "react-native-paper";
 import { GlobalFonts } from "../../infrastructure/GlobalFonts";
 
-const TicketBody = () => {
+const TicketBody = ({ element, index }) => {
   return (
     <View style={styles.con}>
       <View style={styles.route}>
-        <Text>TEA & TE5B</Text>
+        <Text>{element.place1} - {element.place2}</Text>
       </View>
       <View style={styles.icon}>
         <Icon name="staro" size={60} color={GlobalColors.white} />
@@ -18,14 +18,14 @@ const TicketBody = () => {
 
       <View style={styles.right}>
         <View style={styles.content}>
-          <Text style={styles.price}>R123.89</Text>
+          <Text style={styles.price}>R{element.totalAmount}</Text>
           <Paragraph style={styles.Paragraph}>Online Purchase</Paragraph>
         </View>
 
         <View style={[styles.content,styles.cont]}>
           <Text style={styles.price}>Multiple Trip</Text>
           <Paragraph style={styles.Paragraph}>
-            ticket valid for 4-days.
+            ticket valid for {element.diff}-days.
           </Paragraph>
         </View>
 

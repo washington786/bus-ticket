@@ -18,6 +18,7 @@ const GlobalInput = (props: Input) => {
       placeholderTextColor={GlobalColors.grey.l3}
       secureTextEntry={props.secureTextEntry}
       left={<TextInput.Icon name={props.icon} />}
+      
     />
   );
 };

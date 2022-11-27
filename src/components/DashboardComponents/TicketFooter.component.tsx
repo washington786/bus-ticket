@@ -4,7 +4,7 @@ import { GlobalColors } from '../../infrastructure/GlobalColors'
 import { Avatar, Text } from 'react-native-paper'
 import { GlobalFonts } from '../../infrastructure/GlobalFonts'
 
-const TicketFooter = () => {
+const TicketFooter = ({ element, index }) => {
   return (
     <View style={styles.con}>
       <View style={styles.content}>
@@ -13,7 +13,7 @@ const TicketFooter = () => {
       </View>
       <View style={styles.codeCon}>
         <Image source={require('../../assets/barcode.png')} style={styles.img}/>
-        <Text style={styles.text}>#8182919102</Text>
+        <Text style={styles.text}>{element.key}</Text>
       </View>
     </View>
   )

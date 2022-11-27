@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet,View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import ScreenWrapper from '../components/ScreenWrapper/ScreenWrapper'
 import { GlobalColors } from '../infrastructure/GlobalColors'
@@ -51,7 +51,7 @@ const MapScreen = () => {
       >
         {DUMMY_DATA.map((place) => {
           return (
-            <>
+            <> 
               <Marker
                 key={place.id.toString()}
                 title={place.place}
@@ -61,7 +61,12 @@ const MapScreen = () => {
                 }}
               >
                 <Callout onPress={onOpenSnack}>
+                  <View>
                   <Text>{place.place}</Text>
+                  <Text>Stop 1:{place.BusStop?.BusStop1}</Text>
+                  <Text> Stop 2:{place.BusStop?.BusStop2}</Text>
+                  <Text>Stop 3:{place.BusStop?.BusStop3}</Text>
+                  </View>
                 </Callout>
               </Marker>
             </>
