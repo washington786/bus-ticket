@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Button } from 'react-native';
-import { BarCodeScanner } from 'expo-barcode-scanner';
+import React, { useState, useEffect } from "react";
+import { Text, View, StyleSheet } from "react-native";
+import { BarCodeScanner } from "expo-barcode-scanner";
+import { Button } from "react-native-paper";
+import { GlobalColors } from "../infrastructure/GlobalColors";
 
 const AdminScanner = () => {
-    const [hasPermission, setHasPermission] = useState(null);
+  const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
 
   useEffect(() => {
     const getBarCodeScannerPermissions = async () => {
       const { status } = await BarCodeScanner.requestPermissionsAsync();
-      setHasPermission(status === 'granted');
+      setHasPermission(status === "granted");
     };
 
     getBarCodeScannerPermissions();
@@ -27,16 +29,27 @@ const AdminScanner = () => {
     return <Text>No access to camera</Text>;
   }
   return (
-    <View style={{flex:1}}>
+    <View style={{ flex: 1 }}>
       <BarCodeScanner
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         style={StyleSheet.absoluteFillObject}
       />
-      {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
+      {scanned && (
+        <Button
+          onPress={() => setScanned(false)}
+          mode="contained"
+          color={GlobalColors.primary}
+          style={{padding:5,margin:10}}
+          icon='barcode-scan'
+        >
+          Tap to Scan Again
+        </Button>
+        // <Button title={"Tap to Scan Again"} onPress={() => setScanned(false)} />
+      )}
     </View>
-  )
-}
+  );
+};
 
-export default AdminScanner
+export default AdminScanner;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});
