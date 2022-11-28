@@ -34,6 +34,16 @@ const WelcomeScreen = () => {
           >
             Get started Now
           </Button>
+
+          <Button
+            mode="outlined"
+            icon={'account-lock-open'}
+            color={GlobalColors.bg}
+            style={styles.btn}
+            onPress={()=>navigation.navigate('admin')}
+          >
+            Admin
+          </Button>
         </AuthCard>
       </AuthScreenWrapper>
     </ScreenWrapper>

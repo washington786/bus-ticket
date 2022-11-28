@@ -5,12 +5,13 @@ import TicketBody from "../DashboardComponents/TicketBody.component";
 import TicketFooter from "../DashboardComponents/TicketFooter.component";
 import TicketFooter2 from "../DashboardComponents/TicketFooter2.component";
 import { db,auth } from "../../Firebase";
+
 const TicketMainComponent = () => {
   const CurrentID = auth.currentUser.uid;
   const [Busticket, setBusticket] = useState([])
   useEffect(() => {
     db.ref('/BusPayment').on('value', snap => {
-
+//answer call
         const Busticket = []
         snap.forEach(action => {
             const key = action.key
